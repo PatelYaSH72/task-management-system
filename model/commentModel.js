@@ -29,7 +29,7 @@ const createCommentModel = () => {
         console.log("Comments Table Creation Failed", err.message);
         
       } else {
-        console.log("Comments Table Read");
+        console.log("Comments Table Ready");
         
       }
     })
