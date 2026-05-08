@@ -9,6 +9,7 @@ const createCommentModel = require("./model/commentModel");
 const authRouter = require("./routes/authRoutes");
 const projectRouter = require("./routes/projectRoutes");
 const taskRouter = require("./routes/taskRoute");
+const coommentRouter = require("./routes/commetRoute");
 
 dotenv.config();
 
@@ -36,6 +37,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth",authRouter);
 app.use("/api/project",projectRouter);
 app.use("/api/tasks",taskRouter);
+app.use("/api/comment",coommentRouter);
 
 // Server
 const PORT = process.env.PORT || 5000;
