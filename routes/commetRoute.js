@@ -5,5 +5,5 @@ const { addComment } = require("../controller/commentController");
 
 const coommentRouter =  express.Router(); 
 
-// coommentRouter.post("/add-comment",authMiddleware,addComment);
+coommentRouter.post("/add-comment",authMiddleware,addComment);
 module.exports = coommentRouter;
