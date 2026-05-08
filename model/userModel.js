@@ -12,14 +12,14 @@ const createUserTable = () => {
     )
   `;
 
-  db.query(query,(error) => {
-    if (error) {
-        console.log("User Table Creation Failed:", error.message);      
-    }
-    else {
-      console.log("User table Ready");
-    };
-  });
+  // db.query(query,(error) => {
+  //   if (error) {
+  //       console.log("User Table Creation Failed:", error.message);      
+  //   }
+  //   else {
+  //     console.log("User table Ready");
+  //   };
+  // });
 
 
 }

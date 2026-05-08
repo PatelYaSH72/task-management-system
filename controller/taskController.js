@@ -195,82 +195,82 @@ const getTasks = (req, res) => {
   }
 };
 
-// const updateTaskStatus = (req, res) => {
-//   try {
-//     const { id } = req.params;
+const updateTaskStatus = (req, res) => {
+  try {
+    const { id } = req.params;
 
-//     const task_id = id
+    const task_id = id
 
-//     const { status } = req.body;
+    const { status } = req.body;
 
-//     // Validation
-//     if (!status) {
-//       return res.status(400).json({
-//         success: false,
-//         message: "Status is required",
-//       });
-//     }
+    // Validation
+    if (!status) {
+      return res.status(400).json({
+        success: false,
+        message: "Status is required",
+      });
+    }
 
-//     // Check Task Assigned User
-//     const checkQuery = `
-//       SELECT * FROM tasks
-//       WHERE id = ?
-//       AND assigned_to = ?
-//     `;
+    // Check Task Assigned User
+    const checkQuery = `
+      SELECT * FROM tasks
+      WHERE id = ?
+      AND assigned_to = ?
+    `;
 
-//     db.query(
-//       checkQuery,
-//       [task_id, req.user.id],
-//       (err, result) => {
-//         if (err) {
-//           return res.status(500).json({
-//             success: false,
-//             message: err.message,
-//           });
-//         }
+    db.query(
+      checkQuery,
+      [task_id, req.user.id],
+      (err, result) => {
+        if (err) {
+          return res.status(500).json({
+            success: false,
+            message: err.message,
+          });
+        }
 
-//         // Not Assigned User
-//         if (result.length === 0) {
-//           return res.status(403).json({
-//             success: false,
-//             message:
-//               "Only Assigned User Can Update Status",
-//           });
-//         }
+        // Not Assigned User
+        if (result.length === 0) {
+          return res.status(403).json({
+            success: false,
+            message:
+              "Only Assigned User Can Update Status",
+          });
+        }
 
-//         // Update Status
-//         const updateQuery = `
-//           UPDATE tasks
-//           SET status = ?
-//           WHERE id = ?
-//         `;
+        // Update Status
+        const updateQuery = `
+          UPDATE tasks
+          SET status = ?
+          WHERE id = ?
+        `;
 
-//         db.query(
-//           updateQuery,
-//           [status, task_id],
-//           (err) => {
-//             if (err) {
-//               return res.status(500).json({
-//                 success: false,
-//                 message: err.message,
-//               });
-//             }
+        db.query(
+          updateQuery,
+          [status, task_id],
+          (err) => {
+            if (err) {
+              return res.status(500).json({
+                success: false,
+                message: err.message,
+              });
+            }
 
-//             res.status(200).json({
-//               success: true,
-//               message: "Task Status Updated",
-//             });
-//           }
-//         );
-//       }
-//     );
-//   } catch (error) {
-//     res.status(500).json({
-//       success: false,
-//       message: error.message,
-//     });
-//   }
-// };
+            res.status(200).json({
+              success: true,
+              message: "Task Status Updated",
+            });
+          }
+        );
+      }
+    );
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 
 module.exports = {
   createTask,
